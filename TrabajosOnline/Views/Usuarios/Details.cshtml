@@ -1,0 +1,115 @@
+﻿@model TrabajosOnline.Models.Trabajos
+
+@Html.Partial("UserParcial")
+
+<div class="dl-horizontal container pt-5 ">
+
+    <div class="text-center">
+        <h2 class="badge badge-secondary text-wrap mb-3" style="width: 30rem; font-size:30px;">@Html.DisplayFor(model => model.Categoria_Trabajos.Nombre)</h2>
+    </div>
+
+    <div class="border border-secondary rounded p-5">
+
+
+        <div class="pb-2" style="display: flex;">
+            <div style=" margin-right:8px;">
+                <strong>Empresa</strong>
+            </div>
+            <div>
+                @Html.DisplayFor(model => model.Empesa)
+            </div>
+        </div>
+
+
+        <div class="pb-2" style="display: flex;">
+            <div style=" margin-right:8px;">
+                <strong>@Html.DisplayNameFor(model => model.Direccion)</strong>
+            </div>
+            <div>
+                @Html.DisplayFor(model => model.Direccion)
+            </div>
+        </div>
+
+        <div class="pb-2" style="display: flex;">
+            <div style=" margin-right:8px;">
+                <strong>@Html.DisplayNameFor(model => model.Estado)</strong>
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Estado)
+            </div>
+
+
+        </div>
+
+ 
+        <div>
+            <strong>@Html.DisplayNameFor(model => model.Descripcion)</strong>
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Descripcion)
+        </div>
+
+        <div>
+            <strong>@Html.DisplayNameFor(model => model.condiciones)</strong>
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.condiciones)
+        </div>
+
+        <div>
+            <strong><label>Nivel de estudios </label></strong>
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.Trabajos_habilidades.Nombre)
+        </div>
+
+        <div>
+            <strong>@Html.DisplayNameFor(model => model.sueldo)</strong>
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.sueldo)
+        </div>
+
+        <div>
+            <strong>@Html.DisplayNameFor(model => model.fecha_Publicacion)</strong>
+        </div>
+
+        <div>
+            @Html.DisplayFor(model => model.fecha_Publicacion)
+        </div>
+
+        <form action="~/Usuarios/Details" method="post" enctype = "multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input type="file"  id="archivo" name="Upload" required/>
+            <input type="submit" class="btn btn-success" value="Aplicar" />
+            <h6 class="text-success"> @ViewBag.MensajeEnvia;</h6>
+
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+<!--
+
+<form action="~/Usuarios/Index" method="post">
+
+    <input type="email" name="Envia" placeholder="Escribas su correo..."/>
+    <input type="email" name="Recibe" placeholder="Destinatario..." />
+    <input type="text" name="Asunto" placeholder="Asunto..."/>
+    <textarea style="width:600px; height150px;" name="mensaje" placeholder="Escriba un mensaje para la Vacante"></textarea>
+    <input type="file" name="Curriculum" placeholder="Enviar Curriculum" />
+
+    <input type="submit" name="Enviar" value="Enviar" />
+
+</form>
+ -->
+

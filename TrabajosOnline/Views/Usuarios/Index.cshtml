@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TrabajosOnline.Models.Trabajos>
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link href="~/Content/swiper.min.css" rel="stylesheet" />
+    <link href="~/Content/Sw.css" rel="stylesheet" />
+
+
+</head>
+
+@Html.Partial("UserParcial")
+
+<main class="container">
+        <div class="swiper-container ">
+              <div class="swiper-wrapper ">
+                    @foreach (var item in Model)
+                    {
+                        <div class="swiper-slide p-3 rounded border border-dark d-inline-block bg-transparent">
+
+                            <h3 class="p-1"> @Html.DisplayFor(modelItem => item.Categoria_Trabajos.Nombre)</h3>
+
+                            <div><Strong>Direccion:</Strong> @Html.DisplayFor(modelItem => item.Direccion)</div>   
+
+                            <div><Strong>Ciudad:</Strong>@Html.DisplayFor(modelItem => item.Estado)</div>
+
+                            <div><Strong>Publicado:</Strong>@Html.DisplayFor(modelItem => item.fecha_Publicacion)</div>
+
+                            @Html.ActionLink("Ver Vacantes", "Details", new { id = item.id }, htmlAttributes: new { @class = "btn btn-primary m-3" })
+
+                        </div>
+                    }        
+              </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    <script src="~/Scripts/swiper.min.js"></script>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+    </script>
+</main>

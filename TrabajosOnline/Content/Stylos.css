@@ -1,0 +1,76 @@
+﻿/*Selectores universalles*/
+
+
+body, html
+{
+    padding:0px;
+    margin:0px;
+}
+
+.carta {
+    width: 40%;
+    max-width: 1200px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    padding:20px;
+    
+}
+
+.carta a
+{
+    padding: 0 1rem;
+    font-size:16px;
+    color:#3498db;
+}
+.mover
+{
+    display:flex;
+}
+.carta:hover
+{
+    transition: 1s;
+    box-shadow:0 12px 16px rgba(0,0,0,2);
+}
+.carta{
+
+    box-shadow: 0px 1px 1px;
+}
+
+nav
+{
+    background-color:#6154CB;
+    border-radius:10px;
+    box-shadow: 1px 1px 4px 1px black;
+}
+
+/*Selectores por clases para la barra*/
+
+.flexo 
+{
+
+    display:flex;
+    justify-content:flex-end;
+    
+}
+
+.space
+{
+   justify-content:space-between;
+   
+}
+
+.ml
+{
+   
+   margin-right:10px;
+}
+
+input[type="password"], input[type="email"], input[type="search"]
+{
+    padding:5px;
+    border-radius:10px;
+}
+

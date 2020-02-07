@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TrabajosOnline.Models.Trabajos>
+@{
+    ViewBag.Title = "Index";
+
+
+}
+<title> EmpleosRD</title>
+<link href="~/Content/Stylos.css" rel="stylesheet" />
+<nav>
+
+    <div class="flexo space pt-3 pl-4 pr-4 pb-2">
+
+        <div class="logo">
+            <h2 style="color:whitesmoke">Empleos<Strong style="color:red;">RD</Strong></h2>
+        </div>
+
+
+        <form action="~/Acceso/Login" method="post">
+
+            <div class="flexo">
+                <div>
+                    <input type="email" name="correo" class="ml" placeholder="Correo Electronico..." />
+                </div>
+                <div>
+                    <input type="password" name="contrasena" class="ml " placeholder="Contraseña..." />
+                </div>
+                <div>
+                    <input class="btn btn-primary" type="submit" value="Inciar" />
+                </div>
+            </div>
+
+            <div class="text-white">
+                @Html.ActionLink("¿Tienes Cuenta?, Registrate aqui", "Registrar",null, htmlAttributes: new { @class = "text-white" })
+            </div>
+            
+        </form>
+    </div>
+</nav>
+
+
+<div class="container pt-4">
+
+    <main>
+
+        <h3 style=" display:flex; justify-content:center">Ultimos puestos</h3>
+        <div style="transition:2s;" class="mover">
+
+            @foreach (var item in Model)
+            {
+                <div class="carta mt-5 mr-3">
+
+                    <h3> @Html.DisplayFor(modelItem => item.Categoria_Trabajos.Nombre)</h3>
+
+                    @Html.DisplayFor(modelItem => item.Direccion)
+
+                    @Html.DisplayFor(modelItem => item.Estado)
+
+                    @Html.DisplayFor(modelItem => item.fecha_Publicacion)
+
+                    @Html.ActionLink("Ver Vacantes", "Registrar", new { id = item.id, @class = "btn btn-primary" })
+
+                </div>
+            }
+        </div>
+    </main>
+
+</div>

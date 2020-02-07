@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrabajosOnlineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Aplicar_Trabajo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_Usuario" Type="int" />
+    <Property Name="Fecha_Aplicacion" Type="date" />
+    <Property Name="id_Trabajo" Type="int" />
+    <Property Name="doc" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Categoria_Trabajos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Trabajos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_Habilidades" Type="int" />
+    <Property Name="Descripcion" Type="varchar(max)" />
+    <Property Name="id_categoria" Type="int" />
+    <Property Name="sueldo" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Direccion" Type="varchar" MaxLength="50" />
+    <Property Name="fecha_Publicacion" Type="date" />
+    <Property Name="condiciones" Type="varchar(max)" />
+    <Property Name="Estado" Type="varchar" MaxLength="50" />
+    <Property Name="Empesa" Type="varchar" MaxLength="50" />
+    <Property Name="Beneficios" Type="varchar(max)" />
+    <Property Name="Credenciales" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Trabajos_habilidades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Apellido" Type="varchar" MaxLength="50" />
+    <Property Name="Correo" Type="varchar" MaxLength="50" />
+    <Property Name="Foto" Type="image" />
+    <Property Name="Contraseña" Type="varchar(max)" />
+    <Property Name="Rol" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Aplicar_Trabajo_Trabajos">
+    <End Role="Trabajos" Type="Self.Trabajos" Multiplicity="0..1" />
+    <End Role="Aplicar_Trabajo" Type="Self.Aplicar_Trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Aplicar_Trabajo">
+        <PropertyRef Name="id_Trabajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aplicar_Trabajo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Aplicar_Trabajo" Type="Self.Aplicar_Trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Aplicar_Trabajo">
+        <PropertyRef Name="id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trabajos_Categoria_Trabajos">
+    <End Role="Categoria_Trabajos" Type="Self.Categoria_Trabajos" Multiplicity="0..1" />
+    <End Role="Trabajos" Type="Self.Trabajos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria_Trabajos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Trabajos">
+        <PropertyRef Name="id_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trabajos_Trabajos_habilidades">
+    <End Role="Trabajos_habilidades" Type="Self.Trabajos_habilidades" Multiplicity="0..1" />
+    <End Role="Trabajos" Type="Self.Trabajos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajos_habilidades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Trabajos">
+        <PropertyRef Name="id_Habilidades" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TrabajosOnlineModelStoreContainer">
+    <EntitySet Name="Aplicar_Trabajo" EntityType="Self.Aplicar_Trabajo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categoria_Trabajos" EntityType="Self.Categoria_Trabajos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trabajos" EntityType="Self.Trabajos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trabajos_habilidades" EntityType="Self.Trabajos_habilidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Aplicar_Trabajo_Trabajos" Association="Self.FK_Aplicar_Trabajo_Trabajos">
+      <End Role="Trabajos" EntitySet="Trabajos" />
+      <End Role="Aplicar_Trabajo" EntitySet="Aplicar_Trabajo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aplicar_Trabajo_Usuario" Association="Self.FK_Aplicar_Trabajo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Aplicar_Trabajo" EntitySet="Aplicar_Trabajo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trabajos_Categoria_Trabajos" Association="Self.FK_Trabajos_Categoria_Trabajos">
+      <End Role="Categoria_Trabajos" EntitySet="Categoria_Trabajos" />
+      <End Role="Trabajos" EntitySet="Trabajos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trabajos_Trabajos_habilidades" Association="Self.FK_Trabajos_Trabajos_habilidades">
+      <End Role="Trabajos_habilidades" EntitySet="Trabajos_habilidades" />
+      <End Role="Trabajos" EntitySet="Trabajos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

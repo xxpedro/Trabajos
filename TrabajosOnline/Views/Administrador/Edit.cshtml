@@ -1,0 +1,104 @@
+﻿@model TrabajosOnline.Models.Trabajos
+
+@Html.Partial("MenuAdministrador")
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal container bg-light rounded p-5">
+    <h4 style="display:flex;" class="justify-content-center pb-3"> Modificar Oferta</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+
+
+    <div class="form-group">
+        <label><Strong>Grado</Strong></label>
+        <div class="col-md-10">
+            @Html.DropDownList("id_Habilidades", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.id_Habilidades, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Descripcion</Strong></label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Sueldo</Strong></label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sueldo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sueldo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Direccion</Strong></label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Condiciones</Strong></label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.condiciones, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.condiciones, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Estado</Strong></label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Categoria</Strong></label>
+        <div class="col-md-10">
+            @Html.DropDownList("id_categoria", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.id_categoria, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Nombre Empresa</Strong></label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Empesa, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Empesa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Beneficios</Strong></label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Beneficios, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Beneficios, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label><Strong>Contacto</Strong></label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Credenciales, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Credenciales, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success mt-3" />
+        </div>
+    </div>
+</div>
+}
+
+

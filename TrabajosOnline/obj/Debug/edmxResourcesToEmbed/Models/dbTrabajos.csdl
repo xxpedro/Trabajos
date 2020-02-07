@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrabajosOnlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Aplicar_Trabajo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Usuario" Type="Int32" />
+    <Property Name="Fecha_Aplicacion" Type="DateTime" Precision="0" />
+    <Property Name="id_Trabajo" Type="Int32" />
+    <NavigationProperty Name="Trabajos" Relationship="TrabajosOnlineModel.FK_Aplicar_Trabajo_Trabajos" FromRole="Aplicar_Trabajo" ToRole="Trabajos" />
+    <NavigationProperty Name="Usuario" Relationship="TrabajosOnlineModel.FK_Aplicar_Trabajo_Usuario" FromRole="Aplicar_Trabajo" ToRole="Usuario" />
+    <Property Name="doc" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Categoria_Trabajos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Trabajos" Relationship="TrabajosOnlineModel.FK_Trabajos_Categoria_Trabajos" FromRole="Categoria_Trabajos" ToRole="Trabajos" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Trabajos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Habilidades" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="sueldo" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_Publicacion" Type="DateTime" Precision="0" />
+    <Property Name="condiciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_categoria" Type="Int32" />
+    <NavigationProperty Name="Aplicar_Trabajo" Relationship="TrabajosOnlineModel.FK_Aplicar_Trabajo_Trabajos" FromRole="Trabajos" ToRole="Aplicar_Trabajo" />
+    <NavigationProperty Name="Categoria_Trabajos" Relationship="TrabajosOnlineModel.FK_Trabajos_Categoria_Trabajos" FromRole="Trabajos" ToRole="Categoria_Trabajos" />
+    <NavigationProperty Name="Trabajos_habilidades" Relationship="TrabajosOnlineModel.FK_Trabajos_Trabajos_habilidades" FromRole="Trabajos" ToRole="Trabajos_habilidades" />
+    <Property Name="Empesa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Beneficios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Credenciales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Trabajos_habilidades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Trabajos" Relationship="TrabajosOnlineModel.FK_Trabajos_Trabajos_habilidades" FromRole="Trabajos_habilidades" ToRole="Trabajos" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Contraseña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Aplicar_Trabajo" Relationship="TrabajosOnlineModel.FK_Aplicar_Trabajo_Usuario" FromRole="Usuario" ToRole="Aplicar_Trabajo" />
+  </EntityType>
+  <EntityContainer Name="TrabajosOnlineEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Aplicar_Trabajo" EntityType="Self.Aplicar_Trabajo" />
+    <EntitySet Name="Categoria_Trabajos" EntityType="Self.Categoria_Trabajos" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Trabajos" EntityType="Self.Trabajos" />
+    <EntitySet Name="Trabajos_habilidades" EntityType="Self.Trabajos_habilidades" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Aplicar_Trabajo_Trabajos" Association="TrabajosOnlineModel.FK_Aplicar_Trabajo_Trabajos">
+      <End Role="Trabajos" EntitySet="Trabajos" />
+      <End Role="Aplicar_Trabajo" EntitySet="Aplicar_Trabajo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aplicar_Trabajo_Usuario" Association="TrabajosOnlineModel.FK_Aplicar_Trabajo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Aplicar_Trabajo" EntitySet="Aplicar_Trabajo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trabajos_Categoria_Trabajos" Association="TrabajosOnlineModel.FK_Trabajos_Categoria_Trabajos">
+      <End Role="Categoria_Trabajos" EntitySet="Categoria_Trabajos" />
+      <End Role="Trabajos" EntitySet="Trabajos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trabajos_Trabajos_habilidades" Association="TrabajosOnlineModel.FK_Trabajos_Trabajos_habilidades">
+      <End Role="Trabajos_habilidades" EntitySet="Trabajos_habilidades" />
+      <End Role="Trabajos" EntitySet="Trabajos" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Aplicar_Trabajo_Trabajos">
+    <End Type="TrabajosOnlineModel.Trabajos" Role="Trabajos" Multiplicity="0..1" />
+    <End Type="TrabajosOnlineModel.Aplicar_Trabajo" Role="Aplicar_Trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Aplicar_Trabajo">
+        <PropertyRef Name="id_Trabajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aplicar_Trabajo_Usuario">
+    <End Type="TrabajosOnlineModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="TrabajosOnlineModel.Aplicar_Trabajo" Role="Aplicar_Trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Aplicar_Trabajo">
+        <PropertyRef Name="id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trabajos_Categoria_Trabajos">
+    <End Type="TrabajosOnlineModel.Categoria_Trabajos" Role="Categoria_Trabajos" Multiplicity="0..1" />
+    <End Type="TrabajosOnlineModel.Trabajos" Role="Trabajos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria_Trabajos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Trabajos">
+        <PropertyRef Name="id_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trabajos_Trabajos_habilidades">
+    <End Type="TrabajosOnlineModel.Trabajos_habilidades" Role="Trabajos_habilidades" Multiplicity="0..1" />
+    <End Type="TrabajosOnlineModel.Trabajos" Role="Trabajos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajos_habilidades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Trabajos">
+        <PropertyRef Name="id_Habilidades" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

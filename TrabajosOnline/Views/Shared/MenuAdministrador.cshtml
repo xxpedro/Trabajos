@@ -1,0 +1,28 @@
+﻿<link href="~/Content/Stylos.css" rel="stylesheet" />
+<nav>
+    <div class="flexo space pt-3 pl-4 pr-4 pb-2">
+
+        <div class="logo">
+            <h2 style="color:whitesmoke">Empleos<Strong style="color:red;">RD</Strong></h2>
+        </div>
+
+
+        <form action="~/Usuarios/Index" method="post">
+
+            <div class="flexo">
+                <div>
+                    @Html.ActionLink("Add New Job", "Create", "Administrador", null,new { @class = "text-white-50 mr-4" })
+                </div>
+                <div>
+                    @Html.ActionLink("Jobs", "Index", "Administrador", null, new { @class = "text-white-50 mr-4" })
+                </div>
+                <div>
+                    <input type="search" name="buscar" value="" placeholder="Buscar Trabajos" class="" />
+                </div>
+                <div>
+                    <input type="submit" value="Buscar" class="btn btn-success ml-3" />
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
